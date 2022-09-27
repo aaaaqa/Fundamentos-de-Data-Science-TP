@@ -2,6 +2,8 @@ rm(list=ls(all=TRUE))
 cat("\014")
 graphics.off()
 
+install.packages(c("gplots", "dplyr", "ggplot2", "scales", "RColorBrewer", "lubridate", "tidyverse"))
+
 library(gplots)
 library(dplyr)
 library(ggplot2) 
@@ -9,6 +11,10 @@ library(scales)
 library(RColorBrewer)
 library(lubridate)
 library(tidyverse)
+
+rm(list=ls(all=TRUE))
+cat("\014")
+graphics.off()
 
 datos <- read.csv('C:/Users/User/Downloads/hotel_bookings.csv', header=TRUE, sep=',',dec='.')
 
@@ -27,8 +33,6 @@ datos$company <- as.factor(datos$company)
 datos$customer_type <- as.factor(datos$customer_type)
 datos$reservation_status <- as.factor(datos$reservation_status)
 datos$reservation_status_date <- as.Date(datos$reservation_status_date)
-
-summary(datos$company)
 
 #REORGANIZATION DE FECHA DE LLEGADA
 
@@ -98,7 +102,7 @@ datos$agent <- rand.valor(datos$agent)
 
 ggplot(data = datos,aes(x=distribution_channel,fill=distribution_channel))+
   geom_bar()+
-  labs(title = "Comparison de los canales de distribución")
+  labs(title = "Comparison between distribution channels")
 
 # Density per days table
 
